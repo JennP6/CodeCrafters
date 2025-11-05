@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import incidentRoutes from "./server/routes/incidentRoutes.js";
+import userRoutes from "./server/routes/userRoutes.js";
 
 
 const app = express();
@@ -27,6 +28,7 @@ mongoose.connection.once('open', () => {
     console.log('Connected to MongoDB');
 });
 
+app.use('/api/users', userRoutes);
 app.use('/api/incidents', incidentRoutes);
 
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
