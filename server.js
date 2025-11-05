@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import incidentRoutes from "./server/routes/incidentRoutes.js";
 
 
 const app = express();
@@ -25,5 +26,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/Final_Project', {
 mongoose.connection.once('open', () => {
     console.log('Connected to MongoDB');
 });
+
+app.use('/api/incidents', incidentRoutes);
 
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
