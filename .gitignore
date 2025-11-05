@@ -1,0 +1,74 @@
+# ========================================================
+#  GLOBAL
+# ========================================================
+# Logs
+logs
+*.log
+
+# Coverage directory used by tools like istanbul
+coverage
+*.lcov
+
+# Dependency directories
+node_modules/
+
+# Optional npm cache directory
+.npm
+.eslintcache
+
+# dotenv environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Parcel-bundler cache
+.cache
+.parcel-cache
+
+# VSCode settings
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# ========================================================
+# BACKEND (Node / Express / Mongoose)
+# ========================================================
+/server/node_modules
+/server/logs
+/server/temp
+/server/debug.log
+
+# Build artifacts
+server/dist/
+server/build/
+
+# Database credentials
+server/.env
+server/config/*.env
+
+# ========================================================
+# FRONTEND (React / Vite / CRA)
+# ========================================================
+/client/node_modules
+/client/build
+/client/dist
+/client/.env
+/client/.eslintcache
+/client/.parcel-cache
+/client/coverage
+/client/.vite
+/client/.DS_Store
+
+# React Native specific
+.expo/
+web-build/
+*.expo
+
+# ========================================================
+# MAC / OS / IDE files
+# ========================================================
+.DS_Store
