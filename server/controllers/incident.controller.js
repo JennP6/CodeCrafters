@@ -53,8 +53,11 @@ const updateIncident = async (req, res) => {
         if (!updatedIncident) {
             return res.status(404).json({ message: 'Incident not found'});
         }
-
-        res.json(updatedIncident);
+if (req.user.role !== 'admin' && updatedIncident.reporterId !== String(req.user.userId)) {
+  return res.status(403).json({ message: 'Forbidden. Not the reporter.' });
+}
+    
+  res.json(updatedIncident);
     } catch (err) {
         res.status(400).json( { error: err.message });
     }
@@ -94,4 +97,4 @@ export default {
   updateIncident,
   deleteIncidentById,
   deleteAllIncidents 
-}
+};
