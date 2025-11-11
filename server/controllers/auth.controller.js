@@ -2,6 +2,7 @@ import Users from '../models/user.js';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 dotenv.config();
+console.log("Loaded JWT_SECRET:", process.env.JWT_SECRET);
 
 const signToken = (user) => {
   return jwt.sign(
