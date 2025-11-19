@@ -23,6 +23,10 @@ body {
   font-weight: bold;
 }
 
+.logo-img {
+  height: 80px;   
+  width: auto;
+}
 .nav-links {
   list-style: none;
   display: flex;
