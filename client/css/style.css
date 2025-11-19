@@ -1,0 +1,139 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f7fa;
+}
+
+.navbar {
+  background: #222;
+  padding: 15px 0;
+  color: white;
+}
+
+.nav-container {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  color: #00eaff;
+}
+
+.hamburger {
+  display: none;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+#menu-toggle {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    background: #111;
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px 0;
+  }
+
+  #menu-toggle:checked + .hamburger + .nav-links {
+    display: flex;
+  }
+}
+
+.hero {
+  text-align: center;
+  padding: 120px 20px;
+  background: linear-gradient(135deg, #0f0f0f, #004aad);
+  color: white;
+}
+
+.hero-buttons {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.btn {
+  padding: 12px 20px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 16px;
+  display: inline-block;
+  transition: 0.3s ease;
+}
+
+.btn.primary {
+  background: #00eaff;
+  color: black;
+}
+
+.btn.primary:hover {
+  transform: scale(1.05);
+  background: #00bcd4;
+}
+
+.btn.secondary {
+  background: white;
+  color: black;
+}
+
+.btn.secondary:hover {
+  transform: scale(1.05);
+  background: #ddd;
+}
+
+.form-container {
+  width: 90%;
+  max-width: 450px;
+  margin: 60px auto;
+  padding: 25px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.form-container input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.dashboard {
+  padding: 40px;
+  text-align: center;
+}

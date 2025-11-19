@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard – CodeCrafters</title>
+  <link rel="stylesheet" href="CSS/style.css">
+</head>
+<body>
+
+<div id="navbar"></div>
+<script>
+  fetch("navbar.html")
+    .then(r => r.text())
+    .then(html => navbar.innerHTML = html);
+</script>
+
+<div class="dashboard">
+  <h1>Dashboard</h1>
+  <p id="welcomeText">Loading...</p>
+
+  <button id="logoutBtn" class="btn primary">Logout</button>
+</div>
+
+<script src="JS/script.js"></script>
+</body>
+</html>
