@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import config from './config/config.js';
 dotenv.config();
 
 import incidentRoutes from "./server/routes/incidentRoutes.js";
@@ -29,7 +30,7 @@ app.get('/', (req, res) => {
     res.send({ message: 'Welcome to Code Crafters App'});
 });
 
-mongoose.connect('mongodb://127.0.0.1:27017/Final_Project', {
+mongoose.connect(config.mongoUri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
