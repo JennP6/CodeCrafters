@@ -58,22 +58,24 @@ export function CreateIncident({ user }) {
 
       <form onSubmit={handleSubmit} className="form">
         <h3>Create Incident</h3>
+        <label>Enter Incident Description</label>
         <input
           type="text"
           name="description"
-          placeholder="Enter Incident Description"
+          placeholder="Description"
           value={formData.description}
           onChange={handleChange}
           required
         />
+        <label>Enter Incident Date</label>
         <input
           type="date"
           name="dateOccured"
-          placeholder='Date Incident Occure'
           value={formData.dateOccured}
           onChange={handleChange}
           required
         />
+        <label>Enter Incident Place</label>
         <input
           type="text"
           name="place"
@@ -82,6 +84,8 @@ export function CreateIncident({ user }) {
           onChange={handleChange}
           required
         />
+        
+        <label>Enter Incident Severity</label>
         <select name="severity" value={formData.severity} onChange={handleChange}>
           <option value="High">High</option>
           <option value="Medium">Medium</option>
@@ -89,7 +93,7 @@ export function CreateIncident({ user }) {
         </select>
         {error && <p className="error">{error}</p>}
         {success && <p className="success">{success}</p>}
-        <button type="submit">Create Incident</button>
+        <button className="createIncidentBtn" type="submit">Create Incident</button>
         <button className="back-to-dashboardBtn" type="submit" onClick={() => navigate('/dashboard')}>Back To Dashboard</button>
       </form>
     </div>
