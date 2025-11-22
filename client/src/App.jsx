@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar.jsx';
 import Dashboard from './pages/Dashboard.jsx';
 import { Routes, Route, Navigate } from "react-router-dom";
@@ -11,15 +11,27 @@ import IncidentList from "./pages/IncidentList.jsx";
 import CreateIncident from "./pages/CreateIncident.jsx";
 import UpdateIncident from "./pages/UpdateIncident.jsx";
 
+import ProtectedRoute from './components/ProtectedRoute.jsx';
+
 function App() {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [activeForm, setActiveForm] = useState('login'); 
 
   const handleLogout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
     setUser(null);
     setActiveForm('login'); 
   };
+
+  useEffect(() => {
+    const savedUser = localStorage.getItem('user');
+    if (savedUser) {
+      setUser(JSON.parse(savedUser));
+    }
+    setLoading(false);
+  }, []);
 
   return (
     <>
@@ -29,13 +41,35 @@ function App() {
         <Route path="/" element={<Navigate to="/login" replace />} />
         <Route path="/login" element={<Login onLogin={setUser} />} />
         <Route path="/register" element={<Register />} />
-
-        <Route path="/dashboard" element={<Dashboard user={user} />} />
         <Route path="/users" element={<Users />} />
 
-        <Route path="/incidents" element={<IncidentList />} />
-        <Route path="/incidents/create" element={<CreateIncident />} />
-        <Route path="/incidents/:id/edit" element={<UpdateIncident />} />
+        {!loading && (
+          <>
+            <Route path="/dashboard" element= {
+              <ProtectedRoute user={user}>
+                <Dashboard user={user} />
+              </ProtectedRoute>
+            } />
+
+            <Route path="/incidents" element= {
+              <ProtectedRoute user={user}>
+                <IncidentList />
+              </ProtectedRoute>
+            } />
+
+            <Route path="/incidents/create" element={
+              <ProtectedRoute user={user}>
+                <CreateIncident />
+              </ProtectedRoute>
+            } />
+            
+            <Route path="/incidents/:id/edit" element={
+              <ProtectedRoute user={user}>
+                <UpdateIncident />
+              </ProtectedRoute>
+            } />
+          </>
+        )}
       </Routes>
     </>
   );
