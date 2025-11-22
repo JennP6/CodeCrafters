@@ -27,11 +27,11 @@ function App() {
 
   useEffect(() => {
     const savedUser = localStorage.getItem('user');
-    if (savedUser) {
+  if (savedUser) {
       setUser(JSON.parse(savedUser));
-    }
-    setLoading(false);
-  }, []);
+  }
+  setLoading(false);
+}, []);
 
   return (
     <>
@@ -59,7 +59,7 @@ function App() {
 
             <Route path="/incidents/create" element={
               <ProtectedRoute user={user}>
-                <CreateIncident />
+                <CreateIncident user={user} />
               </ProtectedRoute>
             } />
             
