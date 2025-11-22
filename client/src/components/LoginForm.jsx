@@ -1,9 +1,19 @@
 import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const LoginForm = ({ onLogin }) => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+
+  useEffect(() => {
+    if (success) {
+      navigate('/dashboard');
+    }
+  }, [success, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,9 +25,12 @@ const LoginForm = ({ onLogin }) => {
         body: JSON.stringify({ email, password }),
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.message || 'Login failed');
+      if (!res.ok) {
+        throw new Error(data.message || 'Login failed');
+      }
       localStorage.setItem('token', data.token);
       onLogin(data.user);
+      setSuccess(true);
     } catch (err) {
       setError(err.message);
     }
@@ -42,6 +55,7 @@ const LoginForm = ({ onLogin }) => {
       />
       {error && <p className="error">{error}</p>}
       <button type="submit">Login</button>
+      <button type="button" className="registerBtn" onClick={() => navigate('/register')}>Register</button>
     </form>
   );
 };

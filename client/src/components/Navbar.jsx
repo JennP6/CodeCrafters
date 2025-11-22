@@ -1,6 +1,8 @@
 import logo from '../assets/CodeCraftersLogo.png';
+import { useNavigate } from "react-router-dom";
 
-const Navbar = ({ user, onLogout, onSwitchForm }) => {
+const Navbar = ({ user, onLogout }) => {
+  const navigate = useNavigate();
   return (
     <nav className="navbar">
       <div className="logo">
@@ -8,17 +10,10 @@ const Navbar = ({ user, onLogout, onSwitchForm }) => {
       </div>
 
       <div className="nav-links">
-        {!user && (
-          <>
-            <button onClick={() => onSwitchForm('login')}>Login</button>
-            <button onClick={() => onSwitchForm('register')}>Register</button>
-          </>
-        )}
-
         {user && (
           <>
             <span>Hello, {user.email}</span>
-            <button onClick={onLogout}>Logout</button>
+            <button onClick={() => { onLogout(), navigate('/login') }}>Logout</button>
           </>
         )}
       </div>
