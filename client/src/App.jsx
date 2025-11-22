@@ -1,7 +1,15 @@
 import { useState } from 'react';
 import Navbar from './components/Navbar.jsx';
-import Home from './pages/Home.jsx';
 import Dashboard from './pages/Dashboard.jsx';
+import { Routes, Route, Navigate } from "react-router-dom";
+
+import Register from "./pages/RegisterPage.jsx";
+import Login from "./pages/LoginPage.jsx";
+import Users from "./pages/Users.jsx";
+
+import IncidentList from "./pages/IncidentList.jsx";
+import CreateIncident from "./pages/CreateIncident.jsx";
+import UpdateIncident from "./pages/UpdateIncident.jsx";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -15,16 +23,20 @@ function App() {
 
   return (
     <>
-      <Navbar 
-        user={user} 
-        onLogout={handleLogout} 
-        onSwitchForm={setActiveForm} 
-      />
-      {user ? (
-        <Dashboard user={user} />
-      ) : (
-        <Home onLogin={setUser} activeForm={activeForm} />
-      )}
+      <Navbar user={user} onLogout={handleLogout} />
+
+      <Routes>
+        <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="/login" element={<Login onLogin={setUser} />} />
+        <Route path="/register" element={<Register />} />
+
+        <Route path="/dashboard" element={<Dashboard user={user} />} />
+        <Route path="/users" element={<Users />} />
+
+        <Route path="/incidents" element={<IncidentList />} />
+        <Route path="/incidents/create" element={<CreateIncident />} />
+        <Route path="/incidents/:id/edit" element={<UpdateIncident />} />
+      </Routes>
     </>
   );
 }

@@ -107,7 +107,8 @@ button:focus-visible {
 .nav-links button:hover {
   background-color: #b77803; 
 }
-.home header {
+.login header,
+.register header {
   text-align: center;
   margin-bottom: 2rem;
 }
@@ -137,7 +138,7 @@ button:focus-visible {
   padding: 0.5rem;
   cursor: pointer;
 }
-.error {
+.error, .success {
   color: #ff4d4f;
 }
 
@@ -150,4 +151,9 @@ button:focus-visible {
 .navbar .logo img {
   height: 80px;
   width: auto;
+}
+
+.registerBtn,
+.loginBtn {
+  margin-top: 10px;
 }

@@ -1,16 +1,28 @@
 import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
-const RegisterForm = ({ onLogin }) => {
+const RegisterForm = () => {
+  const navigate = useNavigate();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('user');
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+
+  const clearForm = () => {
+    setFirstName('');
+    setLastName('');
+    setEmail('');
+    setPassword('');
+    setRole('user');
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+    setSuccess('');
     try {
       const res = await fetch('http://localhost:3000/api/auth/register', {
         method: 'POST',
@@ -18,9 +30,12 @@ const RegisterForm = ({ onLogin }) => {
         body: JSON.stringify({ firstName, lastName, email, password, role }),
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.message || 'Registration failed');
+      if (!res.ok) {
+        throw new Error(data.message || 'Registration failed');
+      }
       localStorage.setItem('token', data.token);
-      onLogin(data.user);
+      setSuccess('You have registered successfully! Now login.');
+      clearForm();
     } catch (err) {
       setError(err.message);
     }
@@ -60,7 +75,9 @@ const RegisterForm = ({ onLogin }) => {
         <option value="admin">Admin</option>
       </select>
       {error && <p className="error">{error}</p>}
+      {success && <p className="success">{success}</p>}
       <button type="submit">Register</button>
+      <button className="loginBtn" onClick={() => navigate('/login')}>Login</button>
     </form>
   );
 };
