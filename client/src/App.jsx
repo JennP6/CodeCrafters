@@ -3,8 +3,8 @@ import Navbar from './components/Navbar.jsx';
 import Dashboard from './pages/Dashboard.jsx';
 import { Routes, Route, Navigate } from "react-router-dom";
 
-import Register from "./pages/Register.jsx";
-import Login from "./pages/Login.jsx";
+import Register from "./pages/RegisterPage.jsx";
+import Login from "./pages/LoginPage.jsx";
 import Users from "./pages/Users.jsx";
 
 import IncidentList from "./pages/IncidentList.jsx";
