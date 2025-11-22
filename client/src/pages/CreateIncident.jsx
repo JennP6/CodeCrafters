@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
-export default function CreateIncident({ user }) {
+export function CreateIncident({ user }) {
     const navigate = useNavigate();
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
@@ -35,7 +35,9 @@ export default function CreateIncident({ user }) {
         body: JSON.stringify({ ...formData, reporterId: user.id }),
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.message || 'Error creating incident');
+      if (!res.ok) {
+        throw new Error(data.message || 'Error creating incident')
+      }
       setIncidents([...incidents, data]);
       setSuccess('Congratulations! Incident Creation Success!');
       setFormData({
@@ -93,3 +95,5 @@ export default function CreateIncident({ user }) {
     </div>
   )
 }
+
+export default CreateIncident;

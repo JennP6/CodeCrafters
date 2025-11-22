@@ -27,11 +27,11 @@ function App() {
 
   useEffect(() => {
     const savedUser = localStorage.getItem('user');
-  if (savedUser) {
-      setUser(JSON.parse(savedUser));
-  }
-  setLoading(false);
-}, []);
+    if (savedUser) {
+        setUser(JSON.parse(savedUser));
+    }
+    setLoading(false);
+  }, []);
 
   return (
     <>
