@@ -29,6 +29,7 @@ const LoginForm = ({ onLogin }) => {
         throw new Error(data.message || 'Login failed');
       }
       localStorage.setItem('token', data.token);
+      localStorage.setItem('user', JSON.stringify(data.user));
       onLogin(data.user);
       setSuccess(true);
     } catch (err) {
