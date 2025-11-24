@@ -39,7 +39,16 @@ export const login = async (req, res) => {
 
 
     const token = signToken(user);
-    res.json({ user: { id: user._id, email: user.email, role: user.role }, token });
+    res.json({
+      user: {
+        id: user._id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        role: user.role
+      },
+      token
+    });    
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
