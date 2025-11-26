@@ -109,7 +109,7 @@ const IncidentList = ({ token }) => {
                 <td>{formatDate(inc.dateReported)}</td>
                 <td>{inc.place}</td>
                 <td>{inc.severity}</td>
-                <td>
+                <td className="incident-actions">
                   <button
                     className="incident-btn incident-btn-edit"
                     onClick={() => navigate(`/incidents/${inc._id}/edit`)}

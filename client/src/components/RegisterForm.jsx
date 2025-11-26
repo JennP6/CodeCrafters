@@ -23,6 +23,12 @@ const RegisterForm = () => {
     e.preventDefault();
     setError('');
     setSuccess('');
+
+    if (!firstName || !lastName || !email || !password) {
+      setError("All fields are required.");
+      return;
+    }
+
     try {
       const res = await fetch('http://localhost:3000/api/auth/register', {
         method: 'POST',
@@ -42,7 +48,7 @@ const RegisterForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="form">
+    <form onSubmit={handleSubmit} className="form" noValidate>
       <h2>Register</h2>
       <input
         placeholder="First Name"

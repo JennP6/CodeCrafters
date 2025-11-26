@@ -26,6 +26,16 @@ export function CreateIncident({ user }) {
     setError('');
     setSuccess('');
 
+    if (
+      !formData.description ||
+      !formData.dateOccured ||
+      !formData.place ||
+      !formData.severity
+    ) {
+      setError("All fields are required.");
+      return;
+    }
+
     const payload = {
       ...formData,
       dateReported: new Date().toISOString().split("T")[0],
@@ -69,7 +79,7 @@ export function CreateIncident({ user }) {
       </h3>
 
       <div className="create-incident-card">
-        <form onSubmit={handleSubmit} className="form create-incident-form">
+        <form onSubmit={handleSubmit} className="form create-incident-form" noValidate>
           <h3 className="create-incident-form-title">Create Incident</h3>
 
           <label>Enter Incident Description</label>

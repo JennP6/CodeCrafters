@@ -110,3 +110,19 @@
 .incident-btn-cancel:hover {
     background-color: #cacaca;
 }
+
+
+.incident-actions {
+    display: flex;
+    flex-direction: column;   
+    gap: 6px;                
+    align-items: flex-start;
+  }
+  
+  
+  .incident-actions .incident-btn {
+    width: 70px;
+    text-align: center;
+    padding: 6px 10px;
+  }
+  

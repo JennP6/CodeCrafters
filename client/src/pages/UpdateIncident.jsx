@@ -64,7 +64,6 @@ export function UpdateIncident({ user }) {
     setError("");
     setSuccess("");
 
-    // Basic validation
     if (
       !formData.description.trim() ||
       !formData.dateOccured ||
