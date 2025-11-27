@@ -36,9 +36,14 @@ export function CreateIncident({ user }) {
       return;
     }
 
+    const now = new Date();
+    const offsetMs = now.getTimezoneOffset() * 60 * 1000;
+    const localTime = new Date(now.getTime() - offsetMs);
+    const formatedDate = localTime.toISOString().split("T")[0];
+
     const payload = {
       ...formData,
-      dateReported: new Date().toISOString().split("T")[0],
+      dateReported: formatedDate,
       reporterId: user.id,
     };
 
