@@ -37,10 +37,10 @@ export function UpdateIncident({ user }) {
         setFormData({
           description: data.description || "",
           dateOccured: data.dateOccured
-            ? new Date(data.dateOccured).toISOString().split("T")[0]
+            ? data.dateOccured.slice(0, 10)
             : "",
           dateReported: data.dateReported
-            ? new Date(data.dateReported).toISOString().split("T")[0]
+            ? data.dateReported.slice(0, 10)
             : "",
           place: data.place || "",
           severity: data.severity || "Medium",

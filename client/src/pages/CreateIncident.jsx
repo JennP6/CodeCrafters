@@ -36,14 +36,15 @@ export function CreateIncident({ user }) {
       return;
     }
 
-    const now = new Date();
-    const offsetMs = now.getTimezoneOffset() * 60 * 1000;
-    const localTime = new Date(now.getTime() - offsetMs);
-    const formatedDate = localTime.toISOString().split("T")[0];
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, "0");
+    const dd = String(today.getDate()).padStart(2, "0");
+    const formattedReportedDate = `${yyyy}-${mm}-${dd}`;
 
     const payload = {
       ...formData,
-      dateReported: formatedDate,
+      dateReported: formattedReportedDate,
       reporterId: user.id,
     };
 

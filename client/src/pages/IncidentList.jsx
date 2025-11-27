@@ -66,12 +66,19 @@ const IncidentList = ({ token }) => {
     closeDeleteModal();
   };
 
-  const formatDate = (value) =>
-    new Date(value).toLocaleDateString("en-US", {
+  const formatDate = (value) => {
+    if (!value) return "-";
+    const dateOnly = value.slice(0, 10);
+  
+    const [year, month, day] = dateOnly.split("-");
+    const d = new Date(Number(year), Number(month) - 1, Number(day));
+  
+    return d.toLocaleDateString("en-US", {
       year: "numeric",
       month: "long",
       day: "numeric",
     });
+  };
 
     //the reporter name
   const getReporterName = (id) => {
