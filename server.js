@@ -2,17 +2,15 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
-import dotenv from 'dotenv';
-import config from './config/config.js';
-dotenv.config();
 
+import config from './config/config.js';
 import incidentRoutes from "./server/routes/incidentRoutes.js";
 import userRoutes from "./server/routes/userRoutes.js";
 import authRoutes from './server/routes/authRoutes.js';
 
 
 const app = express();
-const PORT = 3000;
+const PORT = config.port || 3000;
 
 // Enable CORS for all origins
 app.use(cors());
@@ -30,10 +28,15 @@ app.get('/', (req, res) => {
     res.send({ message: 'Welcome to Code Crafters App'});
 });
 
-mongoose.connect(config.mongoUri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-});
+mongoose
+  .connect(config.mongoUri)
+  .then(() => {
+    console.log('Connected to MongoDB:', config.mongoUri);
+  })
+  .catch((err) => {
+    console.error('Mongo connection error:', err.message);
+  });
+
 
 mongoose.connection.once('open', () => {
     console.log('Connected to MongoDB');
