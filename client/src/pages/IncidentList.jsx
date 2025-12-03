@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./IncidentList.css";
+import API_BASE from "../apiBase";
 
 const IncidentList = ({ token }) => {
   const [incidents, setIncidents] = useState([]);
@@ -11,7 +12,7 @@ const IncidentList = ({ token }) => {
 
   const fetchUsers = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/users");
+      const res = await fetch(`${API_BASE}/api/users`);
       const data = await res.json();
       setUsers(data);
     } catch (err) {
@@ -21,7 +22,7 @@ const IncidentList = ({ token }) => {
 
   const fetchIncidents = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/incidents", {
+      const res = await fetch(`${API_BASE}/api/incidents`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
@@ -39,7 +40,7 @@ const IncidentList = ({ token }) => {
 
   const handleDelete = async (id) => {
     try {
-      const res = await fetch(`http://localhost:3000/api/incidents/${id}`, {
+      const res = await fetch(`${API_BASE}/api/incidents/${id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });

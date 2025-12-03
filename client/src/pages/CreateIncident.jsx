@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import "./CreateIncident.css";
+import API_BASE from "../apiBase";
 
 export function CreateIncident({ user }) {
   const navigate = useNavigate();
@@ -49,7 +50,7 @@ export function CreateIncident({ user }) {
     };
 
     try {
-      const res = await fetch('http://localhost:3000/api/incidents', {
+      const res = await fetch(`${API_BASE}/api/incidents`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

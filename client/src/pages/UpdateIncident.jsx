@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "./CreateIncident.css";
+import API_BASE from "../apiBase";
 
 export function UpdateIncident({ user }) {
   const { id } = useParams();
@@ -23,7 +24,7 @@ export function UpdateIncident({ user }) {
   useEffect(() => {
     const fetchIncident = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/api/incidents/${id}`, {
+        const res = await fetch(`${API_BASE}/api/incidents/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -80,7 +81,7 @@ export function UpdateIncident({ user }) {
     };
 
     try {
-      const res = await fetch(`http://localhost:3000/api/incidents/${id}`, {
+      const res = await fetch(`${API_BASE}/api/incidents/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

@@ -13,7 +13,9 @@ const app = express();
 const PORT = config.port || 3000;
 
 // Enable CORS for all origins
-app.use(cors());
+app.use(cors({
+  origin: process.env.CLIENT_ORIGIN || "http://localhost:5173",
+}));
 
 app.use(express.json());
 app.use(bodyParser.json());

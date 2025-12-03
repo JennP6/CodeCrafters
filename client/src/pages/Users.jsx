@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Users.css";
+import API_BASE from "../apiBase";
 
 export default function Users() {
   const [users, setUsers] = useState([]);
@@ -8,7 +9,7 @@ export default function Users() {
 
   const fetchUsers = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/users");
+      const res = await fetch(`${API_BASE}/api/users`);
       const data = await res.json();
       setUsers(data);
     } catch (err) {
